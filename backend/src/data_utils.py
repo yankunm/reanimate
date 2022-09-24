@@ -28,6 +28,22 @@ def img_source_init(source_type:str):
         return _img_int_camera()
     
 
+def animpath_dict_init(animation_folder:str):
+    # map the arUco markerId to an animation
+    # TODO: read mapping from file
+    animpath_dict = {
+        21: f'{animation_folder}/path.mp4',
+        33: f'{animation_folder}/saddle.mp4'
+    }
+
+    return animpath_dict
+
+def anim_dict_init(animpath_dict):
+    anim_dict = {}
+    for key, _ in animpath_dict.items():
+        anim_dict[key] = cv.VideoCapture(animpath_dict[key])
+
+    return anim_dict
 
 def _img_int_camera(device_id: int = 0, frameWidth:int = 320, frameHeight:int = 240):
     cap = cv.VideoCapture(device_id)

@@ -3,13 +3,13 @@ import os
 from os.path import join as os_join
 import cv2 as cv
 import numpy as np
-from data_utils import test, img_source_init
+from data_utils import test, img_source_init, animpath_dict_init, anim_dict_init
 from detector import feature_calculate, mark_match, animate_fetch, animate_display
 import logging
 logger = logging.getLogger(__name__)
 
 
-def main_loop(img_src, animation_folder):
+def main_loop(img_src, animpath_dict, anim_dict):
     animation_list = []
 
     while img_src.isOpened():
@@ -24,7 +24,7 @@ def main_loop(img_src, animation_folder):
             
             # step 3: fetch corresponding animation using marks
             if (not animation_list):
-                animation_list = animate_fetch(mark_dict, animation_folder)
+                animation_list = animate_fetch(mark_dict, animpath_dict, anim_dict)
             
             # step 4: draw new image, replace the patch.
             img_animated = animate_display(img, mark_dict, animation_list)
@@ -41,12 +41,20 @@ def main(args):
     animation_folder = os_join(test_path, 'test_fixture')
     mark_type = args.mark_type
     source_type = args.source_type
-
+    
     # init image source
     img_src = img_source_init(source_type)
 
+    # init match_dict,
+    # which is the map from arUco markerId to the animation file
+    animpath_dict = animpath_dict_init(animation_folder)
+
+    # init capture dictionary,
+    # which keeps track of the current video frame
+    anim_dict = anim_dict_init(animpath_dict)
+
     # into loop
-    main_loop(img_src, animation_folder)
+    main_loop(img_src, animpath_dict, anim_dict)
 
     # dictionary = cv.aruco.Dictionary_get(cv.aruco.DICT_6X6_250)
     # markerImage = np.zeros((500, 500), dtype=np.uint8)

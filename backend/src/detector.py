@@ -25,30 +25,29 @@ def mark_match(img, feature_list):
     print(f'feature_list: {feature_list}')
     return feature_list
 
-def animate_fetch(mark_list, animation_folder):
+def animate_fetch(mark_dict, animpath_dict, anim_dict):
     # I/O bound warning
     # given the match ID, fetch the animation data
     # match for lenna
     animate_list = []
-    print(animation_folder)
+    # print(animation_folder)
+   
+    if (mark_dict['markerIds'] is not None):
+        marker_id = mark_dict['markerIds'][0][0]
+        success, im = anim_dict[marker_id].read()
+        if (not success):
+            # restart the animation
+            anim_dict[marker_id].release()
+            anim_dict[marker_id] = cv.VideoCapture(animpath_dict[marker_id])
+            success, im = anim_dict[marker_id].read()
     
-    # match correspondence
-    match_dict = {
-        21: f'{animation_folder}/saddle.mp4',
-        33: f'{animation_folder}/path.mp4',
-    }
+        animate_list.append(im)
 
-    if (mark_list['markerIds'] is not None):
-    # cap = cv.VideoCapture(match_dict[mark_list['markerIds'][0][0]])
-        cap = cv.VideoCapture(match_dict[mark_list['markerIds'][0][0]])
-        success, im = cap.read()
-        while (success):
-            animate_list.append(im)
-            success, im = cap.read()
-    
     return animate_list
 def animate_display(img, mark_dict, animation_list):
     # given the animate data, generate synthesized image (AR)
+
+    # if there are no animations queued, return the original camera image
     if (not animation_list):
         return img
 
