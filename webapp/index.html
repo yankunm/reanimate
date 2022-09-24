@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>reanimate</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="./style.css">
-
+	<meta charset="UTF-8">
+	<title>reanimate</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="css/iphone.css">
+	<linke rel="stylesheet" href="css/demo.css"
+	<script src="js/opencv.js"></script>
+	<script src="js/p5.min.js"></script>
+	<script src="js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="info">
-	<b>re</b>animate<br>
-	<small>Alex Meng, Jeffery Luo, Federick Yeh, XingZhi Guo</small>
-</div>
-<div class="iphone">
+	<!-- partial:index.partial.html -->
+	<div class="info">
+		<b>re</b>animate<br>
+		<small>Alex Meng, Jeffery Luo, Federick Yeh, XingZhi Guo</small>
+		<input id="submit" type="submit" value="Start Demo"></input>
+	</div>
+	<div class="iphone">
 	<div class="outer"></div>
 	<div class="inner"></div>
 	<div class="band tl"></div>
 	<div class="band tr"></div>
 	<div class="band bl"></div>
 	<div class="band br"></div>
-	<div class="screen">
+	<div class="screen" id="screen-id">
 		<!-- Inside the screen -->
 		<div class="time"></div>
 		<div class="date"></div>
@@ -34,10 +38,11 @@
 	<div class="vol up"></div>
 	<div class="vol down"></div>
 	<div class="mute"></div>
-</div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script  src="./script.js"></script>
-
+	<!-- partial -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script  src="js/datetime.js"></script>
+	<script src="js/sketch.js"></script>
+	<script src="js/demo.js"></script>
+	</div>
 </body>
 </html>
