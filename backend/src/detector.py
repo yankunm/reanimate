@@ -22,6 +22,7 @@ def feature_calculate(img):
 
 def mark_match(img, feature_list):
     # Given the feature, match markers return the match ID
+    print(f'feature_list: {feature_list}')
     return feature_list
 
 def animate_fetch(mark_list, animation_folder):
@@ -31,18 +32,27 @@ def animate_fetch(mark_list, animation_folder):
     animate_list = []
     print(animation_folder)
     
-    # im = cv.imread(f'{animation_folder}/lenna.png', cv.IMREAD_UNCHANGED)
-    cap = cv.VideoCapture(f'{animation_folder}/func.mp4')
-    success, im = cap.read()
-    while (success):
-        animate_list.append(im)
+    # match correspondence
+    match_dict = {
+        21: f'{animation_folder}/saddle.mp4',
+        33: f'{animation_folder}/path.mp4',
+    }
+
+    if (mark_list['markerIds'] is not None):
+    # cap = cv.VideoCapture(match_dict[mark_list['markerIds'][0][0]])
+        cap = cv.VideoCapture(match_dict[mark_list['markerIds'][0][0]])
         success, im = cap.read()
+        while (success):
+            animate_list.append(im)
+            success, im = cap.read()
     
     return animate_list
 def animate_display(img, mark_dict, animation_list):
     # given the animate data, generate synthesized image (AR)
+    if (not animation_list):
+        return img
+
     img_animation = animation_list.pop()
-    
     
     height, width, depth = img_animation.shape
     pts_src = np.array(

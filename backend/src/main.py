@@ -23,7 +23,7 @@ def main_loop(img_src, animation_folder):
             mark_dict = mark_match(img, feature_list)
             
             # step 3: fetch corresponding animation using marks
-            if (len(animation_list) == 0):
+            if (not animation_list):
                 animation_list = animate_fetch(mark_dict, animation_folder)
             
             # step 4: draw new image, replace the patch.
