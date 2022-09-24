@@ -31,11 +31,14 @@ def animate_fetch(mark_list, animation_folder):
     animate_list = []
     print(animation_folder)
     
-    im = cv.imread(f'{animation_folder}/lenna.png', cv.IMREAD_UNCHANGED)
-    animate_list.append(im)
+    # im = cv.imread(f'{animation_folder}/lenna.png', cv.IMREAD_UNCHANGED)
+    cap = cv.VideoCapture(f'{animation_folder}/func.mp4')
+    success, im = cap.read()
+    while (success):
+        animate_list.append(im)
+        success, im = cap.read()
     
     return animate_list
-
 def animate_display(img, mark_dict, animation_list):
     # given the animate data, generate synthesized image (AR)
     img_animation = animation_list.pop()

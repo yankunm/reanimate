@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 def main_loop(img_src, animation_folder):
+    animation_list = []
+
     while img_src.isOpened():
         success, img = img_src.read()
         # TODO: make it async
@@ -21,7 +23,8 @@ def main_loop(img_src, animation_folder):
             mark_dict = mark_match(img, feature_list)
             
             # step 3: fetch corresponding animation using marks
-            animation_list = animate_fetch(mark_dict, animation_folder)
+            if (len(animation_list) == 0):
+                animation_list = animate_fetch(mark_dict, animation_folder)
             
             # step 4: draw new image, replace the patch.
             img_animated = animate_display(img, mark_dict, animation_list)
