@@ -20,13 +20,29 @@ def test(t:str) -> List:
     return [t]*3
 
 
-def img_source_init(source_type:str):
+def img_source_init(source_type:str, path:str = None):
     # fetch img from video stream/path
     # return the obj for fetch video in buffer.
     logging.info(f'Image Source: {source_type}')
     if source_type == "camera":
-        return _img_int_camera()
+        return _img_init_camera()
+    if source_type == "file":
+        return _img_init_file(path)
     
+
+def _img_init_camera(device_id: int = 0, frameWidth:int = 320, frameHeight:int = 240):
+    cap = cv.VideoCapture(device_id)
+    cap.set(3, frameWidth)
+    cap.set(4, frameHeight)
+    # cap.set(10,150)
+    return cap
+
+def _img_init_file(path:str, frameWidth:int = 320, frameHeight:int = 240):
+    cap = cv.VideoCapture(path)
+    cap.set(3, frameWidth)
+    cap.set(4, frameHeight)
+    # cap.set(10, 150)
+    return cap
 
 def animpath_dict_init(animation_folder:str):
     # map the arUco markerId to an animation
@@ -44,13 +60,4 @@ def anim_dict_init(animpath_dict):
         anim_dict[key] = cv.VideoCapture(animpath_dict[key])
 
     return anim_dict
-
-def _img_int_camera(device_id: int = 0, frameWidth:int = 320, frameHeight:int = 240):
-    cap = cv.VideoCapture(device_id)
-    cap.set(3, frameWidth)
-    cap.set(4, frameHeight)
-    # cap.set(10,150)
-    return cap
-
-    
 

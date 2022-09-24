@@ -41,9 +41,10 @@ def main(args):
     animation_folder = os_join(test_path, 'test_fixture')
     mark_type = args.mark_type
     source_type = args.source_type
+    source_path = args.source_path
     
     # init image source
-    img_src = img_source_init(source_type)
+    img_src = img_source_init(source_type, source_path)
 
     # init match_dict,
     # which is the map from arUco markerId to the animation file
@@ -59,7 +60,8 @@ def main(args):
     # dictionary = cv.aruco.Dictionary_get(cv.aruco.DICT_6X6_250)
     # markerImage = np.zeros((500, 500), dtype=np.uint8)
     # markerImage = cv.aruco.drawMarker(dictionary, 33, 200, markerImage, 1)
-    # cv.imwrite( os_join(test_path, 'marker33.png'), markerImage)
+    # cv.imwrite
+    # ( os_join(test_path, 'marker33.png'), markerImage)
 
 
 if __name__ == '__main__':
@@ -74,10 +76,17 @@ if __name__ == '__main__':
                         help='The source type of img {camera, file, ...}', default='camera')
     parser.add_argument('--mark_type', type=str,
                         help='The feature type of mark {aruco, surf, ...}', default='aruco')
+    parser.add_argument('--filepath', type=str, help='The path of the file/network source video', default="")
     # parser.add_argument('--is_markless', action='store_true', default=False,)
+
+    ############################
+    # CONFIGURE ARGUMENTS HERE #
+    ############################
     args = parser.parse_args()
     args.proj_path = proj_path
     args.test_path = test_path
+    args.source_type = 'file'
+    args.source_path = 'https://192.168.43.1:8080/video'
     print(args)
 
     main(args)

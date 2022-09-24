@@ -10,8 +10,8 @@ def feature_calculate(img):
     dictionary = cv.aruco.Dictionary_get(cv.aruco.DICT_6X6_250)
     parameters =  cv.aruco.DetectorParameters_create()
     markerCorners, markerIds, rejectedCandidates = cv.aruco.detectMarkers(img, dictionary, parameters=parameters)
-    print('markerCorners', markerCorners)
-    print('markerIds', markerIds)
+    # print('markerCorners', markerCorners)
+    # print('markerIds', markerIds)
     # print('rejectedCandidates', rejectedCandidates)
     res_dict = {
         'markerCorners': markerCorners, 
@@ -22,7 +22,7 @@ def feature_calculate(img):
 
 def mark_match(img, feature_list):
     # Given the feature, match markers return the match ID
-    print(f'feature_list: {feature_list}')
+    # print(f'feature_list: {feature_list}')
     return feature_list
 
 def animate_fetch(mark_dict, animpath_dict, anim_dict):
@@ -32,16 +32,21 @@ def animate_fetch(mark_dict, animpath_dict, anim_dict):
     animate_list = []
     # print(animation_folder)
    
-    if (mark_dict['markerIds'] is not None):
-        marker_id = mark_dict['markerIds'][0][0]
+    if (mark_dict['markerIds'] is None):
+        return animate_list
+
+    marker_id = mark_dict['markerIds'][0][0]
+    if (marker_id not in anim_dict.keys()):
+        return animate_list
+
+    success, im = anim_dict[marker_id].read()
+    if (not success):
+        # restart the animation
+        anim_dict[marker_id].release()
+        anim_dict[marker_id] = cv.VideoCapture(animpath_dict[marker_id])
         success, im = anim_dict[marker_id].read()
-        if (not success):
-            # restart the animation
-            anim_dict[marker_id].release()
-            anim_dict[marker_id] = cv.VideoCapture(animpath_dict[marker_id])
-            success, im = anim_dict[marker_id].read()
     
-        animate_list.append(im)
+    animate_list.append(im)
 
     return animate_list
 def animate_display(img, mark_dict, animation_list):
@@ -69,7 +74,7 @@ def animate_display(img, mark_dict, animation_list):
     if len(markerCorners) > 0:
         mark = markerCorners[0] # assume only one
         pts_dst = mark[0]
-        print(pts_dst.shape)
+        # print(pts_dst.shape)
 
         # [       
         #         [
