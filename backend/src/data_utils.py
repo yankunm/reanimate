@@ -49,7 +49,8 @@ def animpath_dict_init(animation_folder: str):
     # map the arUco markerId to an animation
     # TODO: read mapping from file
     animpath_dict = {
-        (1, 2, 3, 4): f'{animation_folder}/roc.mp4'
+        (1, 2, 3, 4): f'{animation_folder}/roc.mp4',
+        (5, 6, 7, 8): f'{animation_folder}/final.mp4'
     }
     return animpath_dict
 
