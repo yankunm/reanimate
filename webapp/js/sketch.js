@@ -1,5 +1,9 @@
 
 const s = (sketch) => {
+  var capture;
+  var url = "http://10.1.135.184:8080/video";
+  let cv = window.cv;
+
   sketch.setup = () => {
     width = $("#screen-id")[0].clientWidth;
     height = $("#screen-id")[0].clientHeight;
@@ -8,28 +12,14 @@ const s = (sketch) => {
     canvas.parent("screen-id");
     sketch.background(sketch.color("white"));
 
-    var camera, cp, frame, q, url;
-    url = "Your IP Address/video";
-    cap = new cv2.VideoCapture(url);
-
-    while (true) {
-      [camera, frame] = cap.read();
-
-      if (frame !== null)
-        cv2.imshow("Frame", frame);
-
-      q = cv2.waitKey(1);
-      
-      if (q === ord("q"))
-        break;
-    }
-
-    cv2.destroyAllWindows();
-
+    capture = new cv.VideoCapture(url);
   };
   
   sketch.draw = () => {
-    video = true;
+    [camera, frame] = capture.read();
+
+    if (frame !== null)
+      cv.imshow("Frame", frame);
   };
 }
 
