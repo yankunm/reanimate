@@ -4,7 +4,6 @@ import numpy as np
 
 def feature_calculate(img):
     # Given the frame, calculate features
-
     dictionary = cv.aruco.Dictionary_get(cv.aruco.DICT_6X6_250)
     parameters = cv.aruco.DetectorParameters_create()
     markerCorners, markerIds, rejectedCandidates = cv.aruco.detectMarkers(
@@ -26,7 +25,6 @@ def mark_match(img, feature_list):
 
 
 def animate_fetch(mark_dict, animpath_dict, anim_dict):
-    # I/O bound warning
     # given the match ID, fetch the animation data
     # match for lenna
     animate_list = []

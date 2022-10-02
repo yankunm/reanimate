@@ -17,7 +17,6 @@ def main_loop(img_src, animpath_dict, anim_dict):
 
     while img_src.isOpened():
         success, img = img_src.read()
-        # TODO: make it async
         if success:
             # step 1: calculate mark features
             feature_list = feature_calculate(img)

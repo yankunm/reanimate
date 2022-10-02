@@ -41,7 +41,6 @@ def _img_init_file(path: str, frameWidth: int = 320, frameHeight: int = 240):
     cap = cv.VideoCapture(path)
     cap.set(3, frameWidth)
     cap.set(4, frameHeight)
-    # cap.set(10, 150)
     return cap
 
 
