@@ -1,0 +1,6 @@
+framework module Pods_ARTextDemoApp_ARTextDemoAppUITests {
+  umbrella header "Pods-ARTextDemoApp-ARTextDemoAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
