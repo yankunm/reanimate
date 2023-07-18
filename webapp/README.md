@@ -1,4 +1,4 @@
-# WebApp for ReAnimate: A Learning platform - Yankun Meng
+# WebApp for ReAnimate: A Learning platform - Yankun (Alex) Meng
 
 My goal is to develop a full-stack web application for ReAnimate while also extending it to beyond an augmented reality App. My vision is to make it a brand new learning platform where, students, researchers, and publishers can publish papers and resources on the site, and everyone could learn in a collaborative environment. Features such as augmented reality will be added, as well as additional features such as internationalization.
 
