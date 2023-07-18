@@ -12,7 +12,7 @@ docker run -d -p 80:80 docker/getting-started
 
 docker ps -- check status
 
-### Database setup
+### Postgres Database setup
 
 docker-compose.yml
 
