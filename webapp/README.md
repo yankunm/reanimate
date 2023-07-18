@@ -41,4 +41,8 @@ npm run dev
 1. Create IAM User in AWS
 2. Add Security credentials, store access keys in local machine
 
+## Citations
+
+Amigoscode: [Tutorial](https://youtu.be/9i1gQ7w2V24)
+
 
