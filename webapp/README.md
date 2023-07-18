@@ -6,8 +6,6 @@ My goal is to develop a full-stack web application for ReAnimate while also exte
 
 ### Docker Setup
 
-[Install Docker](https://www.docker.com/) <br>
-
 Run a Container:
 
 docker run -d -p 80:80 docker/getting-started
@@ -15,8 +13,6 @@ docker run -d -p 80:80 docker/getting-started
 docker ps -- check status
 
 ### Database setup
-
-[Postgres Database](https://www.postgresql.org/)
 
 docker-compose.yml
 
@@ -38,13 +34,14 @@ npm run dev
 
 ## AWS
 
-[AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/)
-
 1. Create IAM User in AWS
 2. Add Security credentials, store access keys in local machine
 
 ## Citations
 
+[Install Docker](https://www.docker.com/) <br>
+[Postgres Database](https://www.postgresql.org/) <br>
+[AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/) <br>
 Amigoscode: [Tutorial](https://youtu.be/9i1gQ7w2V24)
 
 
